@@ -36,15 +36,16 @@ def clean_data(info):
     info_clean=[]
     for i in info:
         i=i.replace("\n"," ")
-        i=i.replace("\ "," ")
+        i=i.replace("\\"," ")
+        i=i.replace("-"," ")
         info_clean.append(i)
     return info_clean
 
 if __name__=="__main__":
-    image_path_folder = "./test-data"
+    image_path_folder = "./test_data"
     files=getfiles(image_path_folder)
     info=gettext(files)
     info_clean=clean_data(info)
-    print(info_clean)
+
 
 
