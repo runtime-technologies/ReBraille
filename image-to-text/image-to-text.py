@@ -32,7 +32,17 @@ def gettext(files):
 		info.append(imtotext(file_path))
 	return info
 
+def clean_data(info):
+	info_clean=[]
+	for i in info:
+		i=i.replace("\n"," ")
+		info_clean.append(i)
+	return info_clean
+
 if __name__=="__main__":
 	image_path_folder = "/content/test-data"
 	files=getfiles(image_path_folder)
 	info=gettext(files)
+	info_clean=clean_data(info)
+
+
