@@ -5,20 +5,22 @@
 # ------------------------------------------------------------------------------
 import sys
 import time
-#import Jetson.GPIO as GPIO
+import Jetson.GPIO as GPIO
 # ------------------------------------------------------------------------------
 # setup GPIO pins on Jetson
-#GPIO.setmode(GPIO.BOARD)
-channels = [i for i in range(8)]
-#GPIO.setup(channels, GPIO.OUT)
+GPIO.setmode(GPIO.BOARD)
+#channels = [21, 22, 23, 24, 26, 29, 31, 32]
+channels = [31, 32, 33, 35, 36, 37, 38, 40]
+GPIO.setup(channels, GPIO.OUT)
+GPIO.output(channels, GPIO.LOW)
 
 # ------------------------------------------------------------------------------
-SLEEP_TIME_SEC = 1
+SLEEP_TIME_SEC = 2
 # ------------------------------------------------------------------------------
 braille_map = dict()
 
 # letters and corresponding braille sequences
-letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ ,.;"
+letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ ,.;!"
 brailles = [ 0b100000,
              0b101000,
              0b110000,
@@ -45,7 +47,11 @@ brailles = [ 0b100000,
              0b110011,
              0b110111,
              0b100111,
-             0b000000]
+             0b000000,
+             0b001000,
+             0b001101,
+             0b001010,
+             0b001110]
 
 for l, b in zip(letters, brailles):
     braille_map[l] = b
@@ -70,13 +76,13 @@ def binlist_to_gpio(binlist):
        return ['high' if ch == '1' else 'low' for ch in bin_str ] 
     gpio_list = [__bin_to_gpioHL(bin_str) for bin_str in binlist]
     return gpio_list
-#print(binlist_to_gpio(braille_bin_list))
+print(binlist_to_gpio(braille_bin_list))
 # ------------------------------------------------------------------------------
 # convert to list of GPIO.HIGH/GPIO.LOW
 gpio_sequence = binlist_to_gpio(braille_bin_list)
 
 for gpio_out in gpio_sequence:
-    #GPIO.output(channels, gpio_out)
+    GPIO.output(channels, gpio_out)
     print(channels, gpio_out)
     sys.stdout.flush()
     time.sleep(SLEEP_TIME_SEC)
