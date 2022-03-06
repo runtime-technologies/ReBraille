@@ -16,7 +16,9 @@ GPIO.setup(channels, GPIO.OUT, initial=GPIO.LOW)
 
 # ------------------------------------------------------------------------------
 SLEEP_TIME_SEC = 1
-IMAGE_PATH = 'image_to_text/test-data/'
+PULSE_ON_TIME_SEC = .05
+PULSE_OFF_TIME_SEC = (SLEEP_TIME_SEC - PULSE_ON_TIME_SEC)
+IMAGE_PATH = 'image_to_text/test_data/'
 # ------------------------------------------------------------------------------
 braille_map = dict()
 
@@ -76,8 +78,10 @@ for txt in imtxt:
   gpio_sequence = binlist_to_gpio(braille_bin_list)
   
   for gpio_out in gpio_sequence:
-      GPIO.output(channels, gpio_out)
-      print(gpio_out)
-      sys.stdout.flush()
-      time.sleep(SLEEP_TIME_SEC)
+    GPIO.output(channels, gpio_out)
+    print(gpio_out)
+    sys.stdout.flush()
+    time.sleep(PULSE_ON_TIME_SEC)
+    GPIO.output(channels, GPIO.HIGH)
+    time.sleep(PULSE_OFF_TIME_SEC)
 # ------------------------------------------------------------------------------
