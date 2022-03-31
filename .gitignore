@@ -1,1 +1,6 @@
 jetson-gpio/
+__pycache__/
+
+*.swp
+*.swo
+*.pyc
