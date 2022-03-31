@@ -68,7 +68,7 @@ def set_pins(pin_configuration=PINS_LOW):
     GPIO.output(CONTROL_PINS, pin_configuration)
 
 
-def test_pins(interval=1, iterations=10):
+def test_all_pins(interval=1, iterations=10):
     """
     Sets and resets all pins for testing for the specified number
     of iterations with the specified interval.

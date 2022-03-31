@@ -1,3 +1,3 @@
 import utils.gpio as GPIO
 
-GPIO.test_pins(2, 20)
+GPIO.test_all_pins(interval=2, iterations=20)
