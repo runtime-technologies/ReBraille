@@ -52,6 +52,7 @@ imfiles = im2txt.getfiles(IMAGE_PATH)
 imtxt = im2txt.gettext(imfiles)
 imtxt = im2txt.clean_data(imtxt)
 print("...done.")
+#imtxt = "In this section we summarize the themes and findings of research that emerged from our review of the literature"
 
 # ------------------------------------------------------------------------------
 def binlist_to_gpio(binlist):
@@ -81,7 +82,7 @@ for txt in imtxt:
     GPIO.output(channels, gpio_out)
     print(gpio_out)
     sys.stdout.flush()
-    time.sleep(PULSE_ON_TIME_SEC)
-    GPIO.output(channels, GPIO.HIGH)
-    time.sleep(PULSE_OFF_TIME_SEC)
+    time.sleep(SLEEP_TIME_SEC)
+    #GPIO.output(channels, GPIO.HIGH)
+    #time.sleep(PULSE_OFF_TIME_SEC)
 # ------------------------------------------------------------------------------
