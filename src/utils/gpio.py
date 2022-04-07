@@ -139,7 +139,7 @@ def test_patterns(pattern_list, interval=1, iterations=10, verbose=True):
             await_button_input(verbose)
             if verbose: print(f"Displaying: {c}")
 
-            set_pins(PINS_HIGH)
+            display_character(c)
             sleep(interval)
             reset_pins()
             sleep(interval)
